@@ -8,7 +8,7 @@ Features:
   - Session timeouts (idle + absolute lifetime)
   - CSRF protection on all POST forms
   - Per-IP rate limiting on auth + contact
-  - Contact form → sends email via Gmail SMTP
+  - Contact form → sends email via Resend HTTPS API
 """
 
 import os
@@ -17,13 +17,12 @@ import hmac
 import time
 import secrets
 import logging
-import smtplib
-from email.message import EmailMessage
 from datetime import datetime, timedelta, timezone
 from functools import wraps
 from collections import defaultdict, deque
 
 import requests
+import resend
 from dotenv import load_dotenv
 from flask import (
     Flask, render_template, request, session,
@@ -65,10 +64,16 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=timedelta(minutes=SESSION_LIFETIME_MINUTES),
 )
 
-# Email settings
-OWN_EMAIL = os.getenv("OWN_EMAIL", "")
-OWN_PASSWORD = os.getenv("OWN_PASSWORD", "")
-TO_EMAIL = os.getenv("TO_EMAIL", OWN_EMAIL)
+# ------------------ EMAIL (RESEND) ------------------
+# Resend sends over HTTPS (port 443) — never blocked by Render's free tier.
+RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
+# This must be a verified sender/domain on Resend.
+# For quick testing, Resend lets you use: onboarding@resend.dev
+FROM_EMAIL = os.getenv("FROM_EMAIL", "onboarding@resend.dev")
+TO_EMAIL = os.getenv("TO_EMAIL", os.getenv("OWN_EMAIL", ""))
+
+if RESEND_API_KEY:
+    resend.api_key = RESEND_API_KEY
 
 # Admin (owner) account
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
@@ -152,41 +157,34 @@ def clean_header(value):
 
 
 def send_email(name, email, subject, message):
-    """Send the contact-form email via Gmail SMTP (587 STARTTLS, 465 SSL fallback)."""
-    if not (OWN_EMAIL and OWN_PASSWORD):
-        raise RuntimeError("Email credentials are not configured")
+    """Send the contact-form email via Resend's HTTPS API."""
+    if not RESEND_API_KEY:
+        raise RuntimeError("RESEND_API_KEY is not configured")
+    if not TO_EMAIL:
+        raise RuntimeError("TO_EMAIL is not configured")
 
-    if OWN_PASSWORD in ("your_new_app_password", "changeme", "password"):
-        raise RuntimeError(
-            "Gmail app password is still the placeholder. Set a real app password "
-            "in .env (Google Account > Security > 2-Step Verification > App passwords)."
-        )
+    safe_name = clean_header(name)
+    safe_email = clean_header(email)
+    safe_subject = clean_header(subject)[:200] or "No subject"
 
-    msg = EmailMessage()
-    msg["From"] = OWN_EMAIL
-    msg["To"] = TO_EMAIL
-    msg["Subject"] = clean_header(subject)[:200] or "No subject"
-    msg.set_content(
-        f"Name: {clean_header(name)}\n"
-        f"Email: {clean_header(email)}\n\n"
+    body_text = (
+        f"Name: {safe_name}\n"
+        f"Email: {safe_email}\n\n"
         f"Message:\n{message}"
     )
 
+    params = {
+        "from": FROM_EMAIL,
+        "to": [TO_EMAIL],
+        "reply_to": safe_email,
+        "subject": safe_subject,
+        "text": body_text,
+    }
+
     try:
-        try:
-            with smtplib.SMTP("smtp.gmail.com", 587, timeout=15) as connection:
-                connection.starttls()
-                connection.login(OWN_EMAIL, OWN_PASSWORD)
-                connection.send_message(msg)
-        except (smtplib.SMTPServerDisconnected, smtplib.SMTPConnectError, OSError):
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=15) as connection:
-                connection.login(OWN_EMAIL, OWN_PASSWORD)
-                connection.send_message(msg)
-    except smtplib.SMTPAuthenticationError as exc:
-        raise RuntimeError(
-            "Gmail rejected the login. Verify OWN_EMAIL/OWN_PASSWORD in .env use a "
-            "valid Gmail app password (not your normal password)."
-        ) from exc
+        resend.Emails.send(params)
+    except Exception as exc:
+        raise RuntimeError(f"Resend API failed: {exc}") from exc
 
 
 def login_required(fn):
