@@ -251,6 +251,14 @@ p {
     flex: 1;
 }
 
+/* On large/ultra-wide screens let the content fill more of the viewport
+   instead of leaving big empty gutters (mobile keeps the 1200px behaviour). */
+@media (min-width: 1400px) {
+    :root {
+        --container-max-width: min(92vw, 1920px);
+    }
+}
+
 .section {
     padding: var(--spacing-2xl) 0;
 }
