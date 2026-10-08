@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Error {{ code }} | Belachew Buta</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/Belachew-profile.jpg') }}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <section class="page-header">
+            <h1>{{ code }}</h1>
+            <p>{{ message }}</p>
+        </section>
+        <div class="form-wrapper">
+            <div class="form-card" style="text-align:center;">
+                <a href="{{ url_for('get_all_posts') }}" class="btn-submit" style="display:inline-block;text-decoration:none;">
+                    <i class="fas fa-house"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+        <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo"><i class="fas fa-shield-halved"></i> Portfolio</span>
+                <p class="footer-tagline">Secure. Fast. Thoughtfully built.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="{{ url_for('get_all_posts') }}">Home</a>
+                <a href="{{ url_for('work') }}">Work</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/Belachew-Cy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/belachew-cyber" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/Belachew2153" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" data-tooltip="X"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 Belachew <i class="fas fa-heart"></i></p>
+            <button class="footer-top" type="button" aria-label="Back to top"><i class="fas fa-arrow-up"></i> Back to top</button>
+        </div>
+    </footer>
+</body>
+</html>

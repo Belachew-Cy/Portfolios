@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {}
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Read the latest post by Belachew Buta." />
+    <title>{{ post.title }} | Belachew Buta</title>
+    <!-- Static Files (Direct Path) -->
+    <link rel="icon" href="/static/img/Belachew-profile.jpg" type="image/x-icon" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <!-- ======== NAVIGATION ======== -->
+        <header class="navbar">
+            <div class="logo">
+                <i class="fas fa-crown" aria-hidden="true"></i> Port.
+            </div>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="/">Home</a>
+                <a href="/work">Work</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </header>
+        <!-- ======== POST CONTENT ======== -->
+        <section class="page-header">
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.subtitle }}</p>
+        </section>
+
+        <div class="form-wrapper">
+            <div class="form-card" style="max-width: 800px; text-align: left;">
+                <!-- Post Body -->
+                <div class="post-content" style="line-height: 1.8; font-size: 1.05rem; color: #333;">
+                    <p>{{ post.body }}</p>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid #eee;" />
+                <!-- Back Button -->
+                <a href="/" class="btn-submit" style="display: inline-block; text-decoration: none; text-align: center;">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ======== FOOTER ======== -->
+        <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo"><i class="fas fa-shield-halved"></i> Portfolio</span>
+                <p class="footer-tagline">Secure. Fast. Thoughtfully built.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="{{ url_for('get_all_posts') }}">Home</a>
+                <a href="{{ url_for('work') }}">Work</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/Belachew-Cy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/belachew-cyber" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/Belachew2153" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" data-tooltip="X"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026 Belachew <i class="fas fa-heart"></i></p>
+            <button class="footer-top" type="button" aria-label="Back to top"><i class="fas fa-arrow-up"></i> Back to top</button>
+        </div>
+    </footer>
+    <!-- Flask Static Path for JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>
