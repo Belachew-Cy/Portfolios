@@ -209,17 +209,9 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.02em;
 }
 
-h1 {
-    font-size: var(--font-size-5xl);
-}
-
-h2 {
-    font-size: var(--font-size-4xl);
-}
-
-h3 {
-    font-size: var(--font-size-2xl);
-}
+h1 { font-size: var(--font-size-5xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-2xl); }
 
 p {
     margin-bottom: var(--spacing-md);
@@ -232,13 +224,8 @@ p {
     background-clip: text;
 }
 
-.text-center {
-    text-align: center;
-}
-
-.text-muted {
-    color: var(--color-text-muted);
-}
+.text-center { text-align: center; }
+.text-muted { color: var(--color-text-muted); }
 
 /* ============================================
    4. LAYOUT & CONTAINER
@@ -251,8 +238,6 @@ p {
     flex: 1;
 }
 
-/* On large/ultra-wide screens let the content fill more of the viewport
-   instead of leaving big empty gutters (mobile keeps the 1200px behaviour). */
 @media (min-width: 1400px) {
     :root {
         --container-max-width: min(92vw, 1920px);
@@ -330,6 +315,8 @@ p {
     align-items: center;
     gap: var(--spacing-xs);
     font-weight: 500;
+    flex-wrap: wrap;            /* allows wrapping on smaller screens */
+    justify-content: flex-end;
 }
 
 .nav-links a {
@@ -342,7 +329,6 @@ p {
     white-space: nowrap;
 }
 
-/* Animated underline indicator */
 .nav-links a::after {
     content: "";
     position: absolute;
@@ -423,9 +409,7 @@ p {
     box-shadow: 0 8px 20px rgba(74, 108, 247, 0.25);
 }
 
-.btn-primary:active {
-    transform: translateY(0);
-}
+.btn-primary:active { transform: translateY(0); }
 
 .btn-outline {
     background: transparent;
@@ -439,9 +423,7 @@ p {
     transform: translateY(-2px);
 }
 
-.btn-outline:active {
-    transform: translateY(0);
-}
+.btn-outline:active { transform: translateY(0); }
 
 .btn-lg {
     padding: var(--spacing-md) var(--spacing-2xl);
@@ -465,9 +447,7 @@ p {
     padding: var(--spacing-2xl) 0;
 }
 
-.hero-content {
-    flex: 1 1 300px;
-}
+.hero-content { flex: 1 1 300px; }
 
 .hero-badge {
     display: inline-block;
@@ -481,9 +461,7 @@ p {
     margin-bottom: var(--spacing-md);
 }
 
-.hero-content h1 {
-    margin-bottom: var(--spacing-md);
-}
+.hero-content h1 { margin-bottom: var(--spacing-md); }
 
 .hero-content p {
     font-size: var(--font-size-base);
@@ -664,9 +642,7 @@ p {
     transform: scale(1.1) rotate(3deg);
 }
 
-.work-content {
-    padding: var(--spacing-xl);
-}
+.work-content { padding: var(--spacing-xl); }
 
 .work-tag {
     display: inline-block;
@@ -681,9 +657,7 @@ p {
     letter-spacing: 0.5px;
 }
 
-.work-content h3 {
-    margin-bottom: var(--spacing-sm);
-}
+.work-content h3 { margin-bottom: var(--spacing-sm); }
 
 .work-content p {
     color: var(--color-text-light);
@@ -830,9 +804,7 @@ p {
     gap: var(--spacing-md);
 }
 
-.about-text h2 {
-    font-size: var(--font-size-3xl);
-}
+.about-text h2 { font-size: var(--font-size-3xl); }
 
 .about-text p {
     color: var(--color-text-light);
@@ -875,9 +847,7 @@ p {
     color: var(--color-text-muted);
 }
 
-.about-skills h3 {
-    margin-bottom: var(--spacing-md);
-}
+.about-skills h3 { margin-bottom: var(--spacing-md); }
 
 .skill-tags {
     display: flex;
@@ -919,8 +889,6 @@ p {
 /* ============================================
    11. CONTACT SECTION (Contact Page)
    ============================================ */
-
-/* Contact Form */
 .form-wrapper {
     display: flex;
     justify-content: center;
@@ -949,10 +917,7 @@ p {
     font-size: var(--font-size-sm);
 }
 
-/* Form Elements */
-.form-group {
-    margin-bottom: var(--spacing-lg);
-}
+.form-group { margin-bottom: var(--spacing-lg); }
 
 .form-group label {
     display: block;
@@ -1029,9 +994,7 @@ p {
     box-shadow: 0 14px 28px -8px rgba(74, 108, 247, 0.45);
 }
 
-.btn-submit:active {
-    transform: translateY(0);
-}
+.btn-submit:active { transform: translateY(0); }
 
 .btn-submit:disabled {
     opacity: 0.7;
@@ -1045,11 +1008,8 @@ p {
     text-align: center;
 }
 
-.form-footer i {
-    color: var(--color-primary);
-}
+.form-footer i { color: var(--color-primary); }
 
-/* Success Message */
 .success-message {
     text-align: center;
     padding: var(--spacing-2xl) var(--spacing-md);
@@ -1068,11 +1028,8 @@ p {
     margin-bottom: var(--spacing-sm);
 }
 
-.success-message p {
-    color: var(--color-text-light);
-}
+.success-message p { color: var(--color-text-light); }
 
-/* Contact Info - Horizontal Layout */
 .contact-info-wrapper {
     display: flex;
     flex-direction: row;
@@ -1130,9 +1087,7 @@ p {
     word-break: break-word;
 }
 
-.info-card a:hover {
-    color: var(--color-primary);
-}
+.info-card a:hover { color: var(--color-primary); }
 
 .social-row {
     display: flex;
@@ -1152,7 +1107,6 @@ p {
     transform: scale(1.1);
 }
 
-/* Profile Image */
 .profile-image {
     width: 72px;
     height: 72px;
@@ -1177,7 +1131,6 @@ footer {
     position: relative;
 }
 
-/* Animated gradient line that sweeps in on hover */
 footer::before {
     content: "";
     position: absolute;
@@ -1190,9 +1143,7 @@ footer::before {
     transform-origin: left;
     transition: transform 0.5s ease;
 }
-footer:hover::before {
-    transform: scaleX(1);
-}
+footer:hover::before { transform: scaleX(1); }
 
 .footer-inner {
     display: flex;
@@ -1214,16 +1165,13 @@ footer:hover::before {
     font-weight: 700;
     color: var(--color-text);
 }
-.footer-logo i {
-    color: var(--color-primary);
-}
+.footer-logo i { color: var(--color-primary); }
 
 .footer-tagline {
     margin: 0;
     color: var(--color-text-muted);
 }
 
-/* Quick links with animated underline */
 .footer-nav {
     display: flex;
     flex-wrap: wrap;
@@ -1250,14 +1198,9 @@ footer:hover::before {
     transition: transform 0.25s ease;
 }
 
-.footer-nav a:hover {
-    color: var(--color-primary);
-}
-.footer-nav a:hover::after {
-    transform: scaleX(1);
-}
+.footer-nav a:hover { color: var(--color-primary); }
+.footer-nav a:hover::after { transform: scaleX(1); }
 
-/* Social icons: circular, lift + brand glow + tooltip on hover */
 .social-links {
     display: flex;
     justify-content: center;
@@ -1300,7 +1243,6 @@ footer:hover::before {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
-/* Tooltip */
 .social-links a::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -1361,7 +1303,6 @@ footer p i.fa-heart {
     60% { transform: scale(1.2); }
 }
 
-/* Back-to-top button in footer */
 .footer-top {
     display: inline-flex;
     align-items: center;
@@ -1395,17 +1336,13 @@ footer p i.fa-heart {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    footer p i.fa-heart {
-        animation: none;
-    }
+    footer p i.fa-heart { animation: none; }
 }
 
 /* ============================================
    13. UTILITIES
    ============================================ */
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
 .sr-only {
     position: absolute;
@@ -1422,56 +1359,28 @@ footer p i.fa-heart {
    14. ANIMATIONS
    ============================================ */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.6s ease forwards;
-}
-
-.animate-float {
-    animation: float 3s ease-in-out infinite;
-}
-
-.fa-spinner.fa-spin {
-    animation: spin 1s linear infinite;
-}
+.animate-fade-in { animation: fadeIn 0.6s ease forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.fa-spinner.fa-spin { animation: spin 1s linear infinite; }
 
 /* ============================================
    15. RESPONSIVE BREAKPOINTS
@@ -1507,16 +1416,39 @@ footer p i.fa-heart {
 /* Small screens (phones, under 768px) */
 @media (max-width: 767px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-md);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
         padding-bottom: var(--spacing-md);
     }
 
+    /* Keep nav links horizontal and centered */
     .nav-links {
-        gap: var(--spacing-lg);
+        flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-xs);
         width: 100%;
+        padding-top: var(--spacing-sm);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links a {
+        width: auto;
+        font-size: var(--font-size-sm);
+        padding: 0.4rem 0.75rem;
+    }
+
+    .nav-auth {
+        margin-left: 0;
+        display: inline-flex;
+    }
+
+    .nav-auth .btn {
+        padding: 0.4rem 0.85rem;
+        font-size: var(--font-size-xs);
+        min-height: 36px;
     }
 
     .hero {
@@ -1540,9 +1472,7 @@ footer p i.fa-heart {
         flex: 1 1 180px;
     }
 
-    .avatar-wrapper {
-        max-width: 240px;
-    }
+    .avatar-wrapper { max-width: 240px; }
 
     .work-grid {
         grid-template-columns: 1fr;
@@ -1550,39 +1480,26 @@ footer p i.fa-heart {
         margin: 0 auto;
     }
 
-    .work-filters {
-        gap: var(--spacing-sm);
-    }
+    .work-filters { gap: var(--spacing-sm); }
 
     .filter-btn {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: var(--font-size-xs);
     }
 
-    .profile-wrapper {
-        max-width: 200px;
-    }
+    .profile-wrapper { max-width: 200px; }
 
-    .profile-details {
-        padding: var(--spacing-sm) var(--spacing-md);
-    }
+    .profile-details { padding: var(--spacing-sm) var(--spacing-md); }
 
-    .form-card {
-        padding: var(--spacing-lg);
-    }
+    .form-card { padding: var(--spacing-lg); }
 
     .about-stats {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-sm);
     }
 
-    .stat-item {
-        padding: var(--spacing-sm) var(--spacing-xs);
-    }
-
-    .stat-number {
-        font-size: var(--font-size-3xl);
-    }
+    .stat-item { padding: var(--spacing-sm) var(--spacing-xs); }
+    .stat-number { font-size: var(--font-size-3xl); }
 
     .about-cta {
         flex-direction: column;
@@ -1594,24 +1511,16 @@ footer p i.fa-heart {
         justify-content: center;
     }
 
-    .work-links {
-        flex-direction: column;
-    }
-
-    .work-link {
-        justify-content: center;
-    }
+    .work-links { flex-direction: column; }
+    .work-link { justify-content: center; }
 
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-md);
     }
 
-    .section {
-        padding: var(--spacing-xl) 0;
-    }
+    .section { padding: var(--spacing-xl) 0; }
 
-    /* Contact Section - Mobile: Cards stack vertically */
     .contact-info-wrapper {
         flex-direction: column;
         align-items: center;
@@ -1634,103 +1543,44 @@ footer p i.fa-heart {
 
 /* Extra small screens (under 480px) */
 @media (max-width: 479px) {
-    .nav-links {
-        gap: var(--spacing-md);
-    }
+    .nav-links { gap: 4px; }
 
     .nav-links a {
-        font-size: var(--font-size-sm);
+        font-size: 0.78rem;
+        padding: 0.35rem 0.55rem;
     }
 
-    .hero-content h1 {
-        font-size: var(--font-size-4xl);
+    .nav-auth .btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.72rem;
     }
 
-    .hero-content p {
-        font-size: var(--font-size-sm);
-    }
+    .logo { font-size: var(--font-size-xl); }
+
+    .hero-content h1 { font-size: var(--font-size-4xl); }
+    .hero-content p { font-size: var(--font-size-sm); }
 
     .skills-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-sm);
     }
 
-    .skill-card {
-        padding: var(--spacing-md) var(--spacing-sm);
-    }
+    .skill-card { padding: var(--spacing-md) var(--spacing-sm); }
 
-    .work-grid {
-        grid-template-columns: 1fr;
-    }
+    .work-grid { grid-template-columns: 1fr; }
 
-    .form-card {
-        padding: var(--spacing-md);
-    }
+    .form-card { padding: var(--spacing-md); }
 
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
+    .about-stats { grid-template-columns: 1fr; }
 }
 
 /* ============================================
    16. DYNAMIC FEATURES (Browser/OS Detection)
    ============================================ */
 
-/* Mobile Navigation - Hamburger Menu */
+/* Hide hamburger entirely — nav is horizontal everywhere */
 .hamburger-menu {
-    display: none;
-    background: none;
-    border: none;
-    font-size: var(--font-size-2xl);
-    color: var(--color-text);
-    cursor: pointer;
-    padding: var(--spacing-sm);
-    transition: transform 0.3s ease;
-}
-
-.hamburger-menu:hover {
-    transform: scale(1.1);
-}
-
-.hamburger-menu:active {
-    transform: scale(0.95);
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        flex-wrap: wrap;
-    }
-
-    .hamburger-menu {
-        display: block;
-        margin-left: auto;
-    }
-    
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        gap: var(--spacing-xs);
-        padding: var(--spacing-md) 0;
-        margin-left: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .nav-links.active {
-        display: flex;
-    }
-    
-    .nav-links a {
-        width: 100%;
-        text-align: center;
-        padding: var(--spacing-sm) 0;
-        border-radius: var(--radius-md);
-    }
-
-    .nav-auth {
-        margin-left: 0;
-    }
+    display: none !important;
 }
 
 /* Back to Top Button */
@@ -1766,9 +1616,7 @@ footer p i.fa-heart {
     box-shadow: 0 8px 25px rgba(74, 108, 247, 0.5);
 }
 
-.back-to-top:active {
-    transform: scale(0.95);
-}
+.back-to-top:active { transform: scale(0.95); }
 
 @media (max-width: 768px) {
     .back-to-top {
@@ -1793,22 +1641,12 @@ footer p i.fa-heart {
 }
 
 /* Device-Specific Classes */
-.is-mobile .desktop-only {
-    display: none !important;
-}
-
-.is-desktop .mobile-only {
-    display: none !important;
-}
+.is-mobile .desktop-only { display: none !important; }
+.is-desktop .mobile-only { display: none !important; }
 
 /* Slow Connection */
-.slow-connection img[data-lowres] {
-    filter: blur(0);
-}
-
-.slow-connection .heavy-animation {
-    animation: none !important;
-}
+.slow-connection img[data-lowres] { filter: blur(0); }
+.slow-connection .heavy-animation { animation: none !important; }
 
 /* Reduced Motion */
 .reduce-motion *,
@@ -1820,115 +1658,63 @@ footer p i.fa-heart {
     scroll-behavior: auto !important;
 }
 
-.reduce-motion .card:hover {
-    transform: none !important;
-}
-
-.reduce-motion .skill-card:hover {
-    transform: none !important;
-}
-
+.reduce-motion .card:hover,
+.reduce-motion .skill-card:hover,
 .reduce-motion .work-item:hover {
     transform: none !important;
 }
 
-/* Dark Mode Overrides (already handled above) */
+/* Dark Mode Overrides */
 @media (prefers-color-scheme: dark) {
-    .hamburger-menu {
-        color: var(--color-text);
-    }
-    
     .nav-links {
         border-top-color: rgba(255, 255, 255, 0.05);
     }
-    
-    .success-message h3 {
-        color: var(--color-text);
-    }
-    
-    .profile-details {
-        background: var(--color-background);
-    }
-    
-    .stat-item {
-        background: var(--color-background);
-    }
-    
-    .skill-card {
-        background: var(--color-background);
-    }
-    
-    .work-item {
-        background: var(--color-background);
-    }
-    
-    .info-card {
-        background: var(--color-background);
-    }
-    
-    .form-card {
-        background: var(--color-background);
-    }
-    
+
+    .success-message h3 { color: var(--color-text); }
+
+    .profile-details,
+    .stat-item,
+    .skill-card,
+    .work-item,
+    .info-card,
+    .form-card,
     .filter-btn {
         background: var(--color-background);
     }
-    
-    .tag {
-        background: rgba(74, 108, 247, 0.2);
-    }
-    
-    .tag:hover {
-        background: var(--color-primary);
-    }
-    
+
+    .tag { background: rgba(74, 108, 247, 0.2); }
+    .tag:hover { background: var(--color-primary); }
+
     .work-tech span {
         background: rgba(74, 108, 247, 0.15);
         color: var(--color-text-light);
     }
-    
+
     .work-link:last-child {
         background: rgba(74, 108, 247, 0.15);
         color: var(--color-text);
     }
-    
+
     .work-link:last-child:hover {
         background: rgba(74, 108, 247, 0.25);
     }
 }
 
-/* ============================================
-   FEATURE DETECTION FALLBACKS
-   ============================================ */
-
-/* @supports fallbacks are already included above */
-
 /* Print Styles */
 @media print {
-    .no-print {
-        display: none !important;
-    }
-    
-    .back-to-top {
-        display: none !important;
-    }
-    
+    .no-print,
+    .back-to-top,
     .hamburger-menu {
         display: none !important;
     }
-    
+
     body {
         font-size: 12pt;
         color: #000;
         background: #fff;
     }
-    
-    .card {
-        box-shadow: none;
-        border: 1px solid #ddd;
-        page-break-inside: avoid;
-    }
-    
+
+    .card,
     .work-item {
         box-shadow: none;
         border: 1px solid #ddd;

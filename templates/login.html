@@ -27,22 +27,64 @@
   .form-group input{padding:.75rem 1rem;font-size:.95rem}
   .btn-submit{width:100%;padding:.85rem;font-size:1rem;border-radius:10px;margin-top:.5rem}
   .form-footer{font-size:.9rem;text-align:center}
+
+  /* Forgot password row */
+  .forgot-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:-.5rem;
+    margin-bottom:1rem;
+  }
+  .forgot-row a{
+    font-size:.85rem;
+    color:var(--color-primary);
+    font-weight:500;
+    transition:color .2s ease, opacity .2s ease;
+  }
+  .forgot-row a:hover{
+    color:var(--color-primary-dark);
+    text-decoration:underline;
+  }
+  .forgot-row a i{
+    margin-right:.3rem;
+    font-size:.8rem;
+  }
 </style>
 </head>
 <body>
 <div class="container"><div class="form-wrapper"><div class="form-card">
 <h2><i class="fas fa-lock"></i> Member Login</h2>
 <p class="sub">Sign in to view the member area.</p>
+
 {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, msg in messages %}<p class="msg {% if category=='success' %}success{% else %}error{% endif %}" role="status"><i class="fas {% if category=='success' %}fa-check-circle{% else %}fa-triangle-exclamation{% endif %}"></i> {{ msg }}</p>{% endfor %}{% endif %}{% endwith %}
 {% if error %}<p class="msg error" role="alert"><i class="fas fa-triangle-exclamation"></i> {{ error }}</p>{% endif %}
+
 <form method="POST" action="{{ url_for('login') }}" autocomplete="on">
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<div class="form-group"><label for="username">Username</label><input type="text" id="username" name="username" placeholder="Enter Username" autocomplete="username" required maxlength="100"></div>
-<div class="form-group"><label for="password">Password</label><input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="current-password" required></div>
+
+<div class="form-group">
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" placeholder="Enter Username" autocomplete="username" required maxlength="100">
+</div>
+
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="current-password" required>
+</div>
+
+<!-- 👇 Forgot Password link -->
+<div class="forgot-row">
+  <a href="{{ url_for('forgot_password') }}">
+    <i class="fas fa-key"></i> Forgot Password?
+  </a>
+</div>
+
 <button type="submit" class="btn-submit"><i class="fas fa-right-to-bracket"></i> Login</button>
 </form>
+
 <p class="form-footer" style="margin-top:1rem">No account yet? <a href="{{ url_for('register') }}" style="color:var(--color-primary)">Register</a></p>
 </div></div></div>
+
 <footer>
 <div class="footer-inner">
 <div class="footer-brand"><span class="footer-logo"><i class="fas fa-shield-halved"></i> Portfolio</span><p class="footer-tagline">Secure. Fast. Thoughtfully built.</p></div>

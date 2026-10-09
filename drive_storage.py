@@ -98,6 +98,10 @@ class UserStore:
     def add_user(self, username: str, email: str, password_hash: str) -> None:
         raise NotImplementedError
 
+    def update_user_password(self, username: str, password_hash: str) -> None:
+        """Replace the stored password hash for an existing user."""
+        raise NotImplementedError
+
     def all_usernames(self) -> list:
         raise NotImplementedError
 
@@ -135,6 +139,14 @@ class LocalUserStore(UserStore):
             if username in data["users"]:
                 raise ValueError("User already exists")
             data["users"][username] = {"email": email, "password_hash": password_hash}
+            self._write(data)
+
+    def update_user_password(self, username, password_hash):
+        with _lock:
+            data = self._read()
+            if username not in data["users"]:
+                raise KeyError(f"User '{username}' not found")
+            data["users"][username]["password_hash"] = password_hash
             self._write(data)
 
     def all_usernames(self):
@@ -227,6 +239,14 @@ class DriveUserStore(UserStore):
             if username in data["users"]:
                 raise ValueError("User already exists")
             data["users"][username] = {"email": email, "password_hash": password_hash}
+            self._write(data)
+
+    def update_user_password(self, username, password_hash):
+        with _lock:
+            data = self._read()
+            if username not in data["users"]:
+                raise KeyError(f"User '{username}' not found")
+            data["users"][username]["password_hash"] = password_hash
             self._write(data)
 
     def all_usernames(self):
