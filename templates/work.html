@@ -30,10 +30,10 @@
               <i class="fas fa-shield-halved"></i> Portfolio
             </div>
             <nav class="nav-links">
-                <a href="{{ url_for('get_all_posts') }}">Home</a>
-                <a href="{{ url_for('work') }}" class="active">Work</a>
+                <a href="{{ url_for('get_all_posts') }}#home">Home</a>
+                <a href="{{ url_for('get_all_posts') }}#work" class="active">Work</a>
                 <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('get_all_posts') }}#contact">Contact</a>
             </nav>
             <div class="nav-auth">
                 {% if session.user %}
@@ -51,136 +51,7 @@
     <h1>My <span>work</span></h1>
     <p>Security projects, implementations, and case studies from my analyst experience</p>
 </div>
-<!-- ======== FILTER BUTTONS ======== -->
-<div class="work-filters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="sap">SAP Security</button>
-    <button class="filter-btn" data-filter="iam">IAM & PAM</button>
-    <button class="filter-btn" data-filter="network">Network & Firewall</button>
-    <button class="filter-btn" data-filter="grc">GRC & Compliance</button>
-</div>
-<!-- ======== WORK GRID ======== -->
-<div class="work-grid">
-    <!-- Project 1: SAP GRC -->
-    <div class="work-item" data-category="sap">
-        <div class="work-image">
-            <i class="fas fa-balance-scale"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">SAP GRC</span>
-            <h3>SAP GRC Access Control Implementation</h3>
-            <p>Deployed SAP GRC Access Control to enforce segregation of duties and automate emergency access management across the enterprise.</p>
-            <div class="work-tech">
-                <span>SAP GRC</span>
-                <span>SoD Analysis</span>
-                <span>Risk Rules</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-    <!-- Project 2: SAP IAG -->
-    <div class="work-item" data-category="sap">
-        <div class="work-image">
-            <i class="fas fa-users-cog"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">SAP IAG</span>
-            <h3>Identity Access Governance Rollout</h3>
-            <p>Implemented SAP IAG to automate user access reviews, role mining, and compliance reporting across hybrid SAP and non-SAP systems.</p>
-            <div class="work-tech">
-                <span>SAP IAG</span>
-                <span>Access Reviews</span>
-                <span>Role Mining</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-    <!-- Project 3: PAM -->
-    <div class="work-item" data-category="iam">
-        <div class="work-image">
-            <i class="fas fa-key"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">PAM</span>
-            <h3>Privileged Access Management Deployment</h3>
-            <p>Rolled out a PAM solution to vault privileged credentials, enforce session recording, and eliminate standing admin rights across critical servers.</p>
-            <div class="work-tech">
-                <span>CyberArk</span>
-                <span>Vaulting</span>
-                <span>Session Audit</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-    <!-- Project 4: Active Directory -->
-    <div class="work-item" data-category="iam">
-        <div class="work-image">
-            <i class="fas fa-sitemap"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">Active Directory</span>
-            <h3>AD Hardening & Access Review</h3>
-            <p>Hardened Active Directory by enforcing tiered admin model, cleaning stale accounts, and tightening GPOs to reduce lateral movement risk.</p>
-            <div class="work-tech">
-                <span>AD DS</span>
-                <span>Group Policy</span>
-                <span>Tiered Admin</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-    <!-- Project 5: Firewall -->
-    <div class="work-item" data-category="network">
-        <div class="work-image">
-            <i class="fas fa-shield-alt"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">Network Security</span>
-            <h3>Enterprise Firewall Rule Cleanup</h3>
-            <p>Audited and optimized firewall rule sets to remove redundant policies, tighten segmentation, improve incident response visibility and create the policy.</p>
-            <div class="work-tech">
-                <span>Huwaie</span>
-                <span>Rule Audit</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-    <!-- Project 6: SOC / Incident Response -->
-    <div class="work-item" data-category="grc">
-        <div class="work-image">
-            <i class="fas fa-user-shield"></i>
-        </div>
-        <div class="work-content">
-            <span class="work-tag">Compliance</span>
-            <h3>ISO 27001 / SOX Access Audit</h3>
-            <p>Led a full access review and audit readiness program covering SAP, AD, and privileged accounts in preparation for ISO 27001 and SOX compliance.</p>
-            <div class="work-tech">
-                <span>ISO 27001</span>
-                <span>SOX</span>
-                <span>Access Audit</span>
-            </div>
-            <div class="work-links">
-                <a href="#" class="work-link"><i class="fas fa-file-alt"></i> Case Study</a>
-                <a href="#" class="work-link"><i class="fas fa-shield-alt"></i> Details</a>
-            </div>
-        </div>
-    </div>
-</div>
+{% include "_work_section.html" %}
     <!-- ======== FOOTER ======== -->
         <footer>
         <div class="footer-inner">
@@ -189,10 +60,10 @@
                 <p class="footer-tagline">Secure. Fast. Thoughtfully built.</p>
             </div>
             <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="{{ url_for('get_all_posts') }}">Home</a>
-                <a href="{{ url_for('work') }}">Work</a>
+                <a href="{{ url_for('get_all_posts') }}#home">Home</a>
+                <a href="{{ url_for('get_all_posts') }}#work">Work</a>
                 <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('get_all_posts') }}#contact">Contact</a>
             </nav>
             <div class="social-links">
                 <a href="https://github.com/Belachew-Cy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub"><i class="fab fa-github"></i></a>

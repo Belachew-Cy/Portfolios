@@ -30,10 +30,10 @@
               <i class="fas fa-shield-halved"></i> Portfolio
             </div>
             <nav class="nav-links">
-                <a href="{{ url_for('get_all_posts') }}" class="active">Home</a>
-                <a href="{{ url_for('work') }}">Work</a>
+                <a href="#home" class="active">Home</a>
+                <a href="#work">Work</a>
                 <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="#contact">Contact</a>
             </nav>
             <div class="nav-auth">
                 {% if session.user %}
@@ -51,7 +51,7 @@
             </div>
         </header>
         <!-- ======== HERO SECTION ======== -->
-        <div class="hero">
+        <section class="hero" id="home">
             <div class="hero-content">
                 <span class="hero-badge"><i class="fas fa-shield-alt"></i> Information Security Analyst</span>
                  <h1>
@@ -63,14 +63,14 @@
                    I help organizations protect their data, users, and critical systems.
                  </p>
                 <div class="hero-buttons">
-                    <a href="{{ url_for('work') }}" class="btn btn-primary"><i class="fas fa-paper-plane"></i> View Work</a>
-                    <a href="{{ url_for('contact') }}" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact me</a>
+                    <a href="#work" class="btn btn-primary"><i class="fas fa-paper-plane"></i> View Work</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact me</a>
                 </div>
             </div>
             <div  class="hero-avatar">
                 <img src="{{ url_for('static', filename='img/Belachew-profile.jpg') }}" alt="Belachew" style="width: 260px; height:300px; object-fit: cover; border-radius: 150px;">
             </div>
-        </div>
+        </section>
         <!-- ======== SKILLS SECTION ======== -->
 <div class="skills-section">
     <h2>✦ My <span class="gradient-text">toolkit</span></h2>
@@ -137,6 +137,22 @@
         </div>
     </div>
 </div>
+        <!-- ======== WORK SECTION ======== -->
+        <section class="page-section" id="work">
+            <div class="page-header">
+                <h1>My <span>work</span></h1>
+                <p>Security projects, implementations, and case studies from my analyst experience</p>
+            </div>
+            {% include "_work_section.html" %}
+        </section>
+        <!-- ======== CONTACT SECTION ======== -->
+        <section class="page-section" id="contact">
+            <div class="page-header">
+                <h1>Let's <span>connect</span></h1>
+                <p>Have a project in mind? I'd love to hear about it.</p>
+            </div>
+            {% include "_contact_form.html" %}
+        </section>
     </div>
     <!-- ======== FOOTER ======== -->
     <footer>
@@ -146,10 +162,10 @@
                 <p class="footer-tagline">Secure. Fast. Thoughtfully built.</p>
             </div>
             <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="{{ url_for('get_all_posts') }}">Home</a>
-                <a href="{{ url_for('work') }}">Work</a>
+                <a href="#home">Home</a>
+                <a href="#work">Work</a>
                 <a href="{{ url_for('about') }}">About</a>
-                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="#contact">Contact</a>
             </nav>
             <div class="social-links">
                 <a href="https://github.com/Belachew-Cy" target="_blank" rel="noopener noreferrer" aria-label="GitHub" data-tooltip="GitHub"><i class="fab fa-github"></i></a>

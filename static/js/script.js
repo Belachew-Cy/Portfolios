@@ -336,15 +336,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setActiveNavLink() {
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const currentHash = window.location.hash;
         const navLinks = document.querySelectorAll('.nav-links a');
-        
+
         navLinks.forEach(link => {
             const linkHref = link.getAttribute('href');
-            if (linkHref === currentPage) {
-                link.classList.add('active');
+            let isActive;
+            if (linkHref.startsWith('#')) {
+                // One-page section links: default to #home when no hash is set.
+                isActive = linkHref === (currentHash || '#home');
             } else {
-                link.classList.remove('active');
+                isActive = linkHref === currentPage;
             }
+            link.classList.toggle('active', isActive);
         });
     }
 
@@ -403,6 +407,50 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    }
+
+    /* ============================================
+       SECTION 8b: POST-LOGIN SCROLL TOUR
+       After signing in the home page glides once
+       through Home -> Work -> Contact.
+       ============================================ */
+
+    function initPostLoginTour() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('tour') !== '1') return;
+
+        // Clean the flag so refreshing does not replay the tour.
+        history.replaceState(null, '', window.location.pathname);
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const stops = ['#home', '#work', '#contact']
+            .map(selector => document.querySelector(selector))
+            .filter(Boolean);
+        if (prefersReduced || stops.length < 2) return;
+
+        const STEP_MS = 1700;
+        let index = 0;
+        let cancelled = false;
+
+        const go = () => {
+            if (cancelled || index >= stops.length) return;
+            stops[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            index += 1;
+            if (index < stops.length) {
+                timer = setTimeout(go, STEP_MS);
+            }
+        };
+        const cancel = () => {
+            cancelled = true;
+            clearTimeout(timer);
+        };
+
+        // Any user input hands control back immediately.
+        ['wheel', 'touchstart', 'keydown'].forEach(eventName =>
+            document.addEventListener(eventName, cancel, { once: true, passive: true })
+        );
+
+        let timer = setTimeout(go, 700);
     }
 
     /* ============================================
@@ -828,6 +876,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileNav();
     setActiveNavLink();
     initSmoothScroll();
+    initPostLoginTour();
     initScrollAnimations();
     initBackToTop();
     initFooterTop();

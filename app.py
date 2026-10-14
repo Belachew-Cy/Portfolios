@@ -3,7 +3,7 @@ Belachew Portfolio — Flask Application
 ---------------------------------------
 Features:
   - Public home page with blog posts
-  - Login-protected pages (about, work, contact)
+  - Public work and contact pages; about stays login-protected
   - User registration + login (hashed passwords)
   - Forgot password / reset password via email (Resend)
   - Session timeouts (idle + absolute lifetime)
@@ -278,13 +278,11 @@ def about():
 
 
 @app.route("/work")
-@login_required
 def work():
     return render_template("work.html")
 
 
 @app.route("/contact", methods=["GET", "POST"])
-@login_required
 @rate_limit(max_requests=5, window_seconds=300)
 def contact():
     if request.method == "POST":
@@ -444,7 +442,9 @@ def login():
 
         if username and password and _authenticate(username, password):
             _start_session(username)
-            return redirect(url_for("get_all_posts"))
+            # The tour flag makes the home page smoothly scroll through its
+            # Home, Work and Contact sections once, right after signing in.
+            return redirect(url_for("get_all_posts", tour=1))
 
         return render_template("login.html", error="Invalid username or password"), 401
 

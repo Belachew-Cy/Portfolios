@@ -509,6 +509,15 @@ p {
     margin: var(--spacing-2xl) 0 var(--spacing-md) 0;
 }
 
+/* One-page sections: keep anchored targets clear of the sticky navbar. */
+section[id] {
+    scroll-margin-top: 90px;
+}
+
+.page-section {
+    padding-top: var(--spacing-3xl);
+}
+
 .skills-section h2 {
     font-size: var(--font-size-2xl);
     font-weight: 600;
